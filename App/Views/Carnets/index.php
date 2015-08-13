@@ -16,7 +16,6 @@ use Core\Helpers\Html;
                         <h4>Carnet <?= $carnet->annee ?> n°<?= $carnet->numero ?></h4>
                     </div>
                     <div class="panel-body">
-                        <a href="#" class="btn btn-primary btn-sm">Télécher le pdf</a>
                         <a href="<?= Html::getFile('carnets' .DS .$carnet->file); ?>" class="btn btn-warning btn-sm">Lire le carnet</a>
                     </div>
                 </div>

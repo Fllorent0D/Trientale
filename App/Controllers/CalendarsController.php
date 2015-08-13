@@ -15,7 +15,6 @@ class CalendarsController extends AppController{
 
     public function admin_index()
     {
-
         if($this->Request->isPost)
         {
             $d['new'] = $this->Request->data;

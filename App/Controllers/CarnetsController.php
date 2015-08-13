@@ -20,6 +20,7 @@ class CarnetsController extends AppController {
         $d["carnets"] = $this->Carnet->get(["order" => "annee DESC, numero"]);
         $this->set($d);
     }
+
     public function admin_index(){
         $d = [];
         if ($this->Request->isPost) {

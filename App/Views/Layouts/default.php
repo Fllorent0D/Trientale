@@ -42,7 +42,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="#">Programme des activités</a></li>
                                 <li><?= Html::link(['carnets', 'index'], "Carnets"); ?></li>
-                                <li><?= Html::link(['visites', 'index'], "Visites"); ?></li>
+                                <li><?= Html::link(['visites', 'index'], "Comptes rendus"); ?></li>
                                 <li><a href="#">Articles</a></li>
                             </ul>
                         </li>

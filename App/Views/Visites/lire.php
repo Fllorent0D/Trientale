@@ -21,7 +21,7 @@ use Core\Helpers\Date;
             <a class="btn btn-warning" href="<?= \Core\Helpers\Html::getFile('visites'. DS . $visite->file);?>">Télécharger le pdf <i class="fa fa-download"></i></a>
 
             <hr>
-            <p><?= $visite->text; ?></p>
+            <p><?= htmlentities($visite->text); ?></p>
 
         </div>
 
