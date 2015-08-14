@@ -1,4 +1,7 @@
-<?php use Core\Helpers\Html; ?>
+<?php
+    use Core\Helpers\Form;
+    use Core\Helpers\Html;
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +39,13 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse" role="navigation">
                     <ul class="nav navbar-nav navbar-right">
                         <li><?= Html::link(['home', 'index'], "ACCUEIL"); ?></li>
-                        <li><?= Html::link(['abouts', 'index'], "A PROPOS"); ?></li>
+                        <li class="dropdown">
+                            <a href="index.html#" class="dropdown-toggle" data-toggle="dropdown">A PROPOS<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><?= Html::link(['abouts', 'trientale'], "La Trientale"); ?></li>
+                                <li><?= Html::link(['abouts', 'reserves'], "Les réserves naturelles"); ?></li>
+                            </ul>
+                        </li>
                         <li class="dropdown">
                             <a href="index.html#" class="dropdown-toggle" data-toggle="dropdown">DOSSIERS<b class="caret"></b></a>
                             <ul class="dropdown-menu">
@@ -80,12 +89,16 @@
                         <h4>
                             Contact
                         </h4>
-                        <form action="#" method="post">
-                            <input type="text" placeholder="Nom" />
-                            <input type="text" placeholder="Email" />
-                            <textarea rows="3" placeholder="Message"></textarea>
-                            <input type="submit" value="Envoyer" />
-                        </form>
+
+                        <?= Form::start($this->Request->url.'#footer'); ?>
+                            <?= Form::input("text", "name", false, [], isset($contactData)? $contactData->name : "", "Nom"); ?>
+                            <?= (isset($contactErrors['name']))? "<label class=\"text-danger\">".$contactErrors['name']."</label>":""; ?>
+                            <?= Form::input("text", "email", false, [], isset($contactData)? $contactData->email : "", "Email"); ?>
+                            <?= (isset($contactErrors['email']))? "<label class=\"text-danger\">".$contactErrors['email']."</label>":""; ?>
+                            <?= Form::textarea('message', ['placeholder' => 'Message', 'rows' => '8'], isset($contactData)? $contactData->message : ""); ?>
+                            <?= (isset($contactErrors['message']))? "<label class=\"text-danger\">".$contactErrors['message']."</label><br>":""; ?>
+                            <?= isset($contactInfo)? "<label class=\"text-success\">".$contactInfo." </label>" : "" ?>
+                        <?= Form::end("Envoyer"); ?>
                     </div>
                 </div>
                 <div class="row credits">
