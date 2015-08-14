@@ -61,7 +61,7 @@ class VisitesController extends AppController {
 
                     $new = new \stdClass();
                     $new->title = $text[0];
-                    $new->guide = str_replace(['Guides : ', 'Guide : '], "" ,$text[2]);
+                    $new->guide = str_replace(['Guides : ', 'Guide : ', 'Responsables : ', 'Responsable : '], "" ,$text[2]);
                     $new->text = nl2br($text[3]);
                     $new->date = date("Y-m-d", $datetime->getTimestamp());
                     $new->file = Text::toSlug($new->date.'_'.$new->title) . Uploader::getExtension($_FILES['pdf']['name']);

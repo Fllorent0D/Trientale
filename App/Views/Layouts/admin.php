@@ -64,7 +64,7 @@
                 <span class="icon-thumbnail"><?= Html::fa("edit"); ?></span>
             </li>
             <li>
-                <?= Html::link(["home", "index", "admin"],'<span class="title font-montserrat">Messagerie</span>')?>
+                <?= Html::link(["messages", "index", "admin"],'<span class="title font-montserrat">Messagerie</span>')?>
                 <span class="icon-thumbnail"><?= Html::fa("envelope"); ?></span>
             </li>
         </ul>

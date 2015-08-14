@@ -102,12 +102,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SwithFr/SwithError.git",
-                "reference": "b5d0faa148fa97880c15edb965b1235a04d7b15d"
+                "reference": "a25ebae2bc8af94af7e8a5dcaa1a6f18fbcc49cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SwithFr/SwithError/zipball/b5d0faa148fa97880c15edb965b1235a04d7b15d",
-                "reference": "b5d0faa148fa97880c15edb965b1235a04d7b15d",
+                "url": "https://api.github.com/repos/SwithFr/SwithError/zipball/a25ebae2bc8af94af7e8a5dcaa1a6f18fbcc49cc",
+                "reference": "a25ebae2bc8af94af7e8a5dcaa1a6f18fbcc49cc",
                 "shasum": ""
             },
             "type": "library",
@@ -124,7 +124,7 @@
                 }
             ],
             "description": "Permet de gerer des erreurs (liees au framewirk swith/framework)",
-            "time": "2015-07-16 20:13:10"
+            "time": "2015-08-14 12:51:16"
         },
         {
             "name": "tecnick.com/tcpdf",

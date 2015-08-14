@@ -12,7 +12,7 @@ namespace App\Controllers;
 use Core\Lib\Debug;
 
 class AboutsController extends AppController {
-    public function index()
+    public function trientale()
     {
         $d['abouts'] = $this->About->get();
         $this->set($d);

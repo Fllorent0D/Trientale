@@ -59,6 +59,7 @@ class CarnetsController extends AppController {
         if(is_numeric($id))
         {
             $user = $this->Carnet->getFirst(["where" => ["id" => $id]]);
+            //Debug::debug($user);
             if(empty($user))
             {
                 $this->Session->setFlash("Ce carnet n'existe pas", "danger");

@@ -21,7 +21,7 @@
                 </p>
                 <p><i class="fa fa-clock-o"></i> <?= Date::dateToFr($visite->date, "Le %d %B %Y") ;?></p>
                 <hr>
-                <p><?= Text::cut($visite->text, 600); ?></p>
+                <p><?= html_entity_decode(Text::cut($visite->text, 600)); ?></p>
                 <?= Html::link(['visites', 'lire'], "Lire la suite ".Html::fa('chevron-right') , [$visite->id], ['class' => 'btn btn-primary'])?>
                 <a class="btn btn-warning" href="<?= \Core\Helpers\Html::getFile('visites'. DS . $visite->file);?>">Télécharger le pdf <i class="fa fa-download"></i></a>
 

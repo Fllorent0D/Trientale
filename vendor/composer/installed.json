@@ -49,38 +49,6 @@
         ]
     },
     {
-        "name": "swith/error",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/SwithFr/SwithError.git",
-            "reference": "b5d0faa148fa97880c15edb965b1235a04d7b15d"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/SwithFr/SwithError/zipball/b5d0faa148fa97880c15edb965b1235a04d7b15d",
-            "reference": "b5d0faa148fa97880c15edb965b1235a04d7b15d",
-            "shasum": ""
-        },
-        "time": "2015-07-16 20:13:10",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "SwithError\\": "./"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "authors": [
-            {
-                "name": "SwithFr",
-                "email": "contact@swith.fr"
-            }
-        ],
-        "description": "Permet de gerer des erreurs (liees au framewirk swith/framework)"
-    },
-    {
         "name": "tecnick.com/tcpdf",
         "version": "6.2.11",
         "version_normalized": "6.2.11.0",
@@ -189,5 +157,37 @@
         ],
         "description": "Pdf parser library. Can read and extract information from pdf file.",
         "homepage": "http://www.pdfparser.org"
+    },
+    {
+        "name": "swith/error",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/SwithFr/SwithError.git",
+            "reference": "a25ebae2bc8af94af7e8a5dcaa1a6f18fbcc49cc"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/SwithFr/SwithError/zipball/a25ebae2bc8af94af7e8a5dcaa1a6f18fbcc49cc",
+            "reference": "a25ebae2bc8af94af7e8a5dcaa1a6f18fbcc49cc",
+            "shasum": ""
+        },
+        "time": "2015-08-14 12:51:16",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "SwithError\\": "./"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "authors": [
+            {
+                "name": "SwithFr",
+                "email": "contact@swith.fr"
+            }
+        ],
+        "description": "Permet de gerer des erreurs (liees au framewirk swith/framework)"
     }
 ]
