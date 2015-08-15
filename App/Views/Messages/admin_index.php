@@ -6,7 +6,7 @@
 ?>
 <div class="container-fluid container-fixed-lg">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-sm-4">
             <div class="panel">
                 <div class="panel-heading">
                     <?= \Core\Helpers\Html::link([$this->Request->controller, $this->Request->action, $this->Request->prefixe],"<span class=\"badge-primary pull-right\">".\Core\Helpers\Html::fa('refresh')."</span>", $this->Request->params); ?>
@@ -17,7 +17,7 @@
                     <div class="list-group">
                         <?php foreach($messages as $message) : ?>
                             <a href="<?= ROOT ?>admin/messages/index/<?= $message->id ?>" class="list-group-item <?= (isset($content) AND $message->id == $content->id)? "active" :""; ?>">
-                                <?= ($message->new)?"<span class=\"badge badge-info\">Nouveau</span>" : "" ; ?>
+                                <?= ($message->new)? "<span class=\"badge badge-info\">Nouveau</span>" : "" ; ?>
                                 <h4 class="list-group-item-heading"><?= htmlspecialchars_decode(html_entity_decode($message->name)); ?></h4>
                                 <p class="list-group-item-text"><?= htmlspecialchars_decode(html_entity_decode(\Core\Helpers\Text::cut($message->message, 75))); ?></p>
                             </a>
@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-sm-8">
             <?php if(isset($content)): ?>
             <div class="row">
                 <div class="panel">
@@ -55,7 +55,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <div class="form-group <?= (isset($error['place']))? "has-error" : ""; ?>">
+                                <div class="form-group <?= (isset($error['message']))? "has-error" : ""; ?>">
                                     <label>Message</label>
                                     <?= Form::textarea('message',['class'=>'form-control', 'rows' => 5], (isset($reply->message))? $reply->message : ""); ?>
                                 </div>
@@ -63,6 +63,7 @@
 
                             </div>
                         </div>
+
                         <?= Form::end("Répondre", ['class' => 'btn btn-info']); ?>
                     </div>
                 </div>

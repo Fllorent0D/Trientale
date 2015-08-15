@@ -28,6 +28,10 @@ class Message extends AppModel
         "message" =>
         [
             ["ruleName" => "required", "message" => "Vous devez rentrer un message"]
+        ],
+        "subject" =>
+        [
+            ['ruleName' => "required", "message" => "Vous devez écrire un sujet"]
         ]
     ];
 }

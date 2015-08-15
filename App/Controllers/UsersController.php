@@ -31,7 +31,10 @@ class UsersController extends AppController{
         }
         $this->set($d);
     }
-
+    public function index()
+    {
+        $this->redirect("users/connect");
+    }
     public function logout()
     {
         $this->Auth->logout(true);
