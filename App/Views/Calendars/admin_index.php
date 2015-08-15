@@ -7,6 +7,8 @@
  */
 use Core\Helpers\Html;
 use Core\Helpers\Form;
+use Core\Helpers\Date;
+use Core\Helpers\Calendar;
 ?>
 <div class="modal fade slide-top disable-scroll" id="modalSlideUp" tabindex="-1" role="dialog" aria-labelledby="modalSlideUpLabel" aria-hidden="false">
     <div class="modal-dialog">
@@ -17,14 +19,14 @@ use Core\Helpers\Form;
             <div class="modal-body">
 
 
-                <?= Form::start('admin/calendars/index', "POST", ['class' => 'form-default']); ?>
+                <?= Form::start($this->Request->url, "POST", ['class' => 'form-default']); ?>
 
                 <div class="row">
                     <div class="col-sm-12">
 
                         <div class="form-group <?= (isset($error['date']))? "has-error" : ""; ?>">
                             <label>Date</label>
-                            <?= Form::input('date','date','',['class'=>'form-control', 'placeholder' => 'YYYY-MM-DD', 'value' => (isset($new->date))? $new->date : ""]); ?>
+                            <?= Form::input('date','date','',['class'=>'form-control', 'placeholder' => 'YYYY-MM-DD', 'value' => (isset($new->date))? $new->date : $date->format('Y')."-".$date->format("m")."-"]); ?>
                         </div>
                         <?= (isset($error['date']))? "<label class=\"text-danger\">".$error['date']."</label>":""; ?>
                     </div>
@@ -101,8 +103,19 @@ use Core\Helpers\Form;
 <div class="container-fluid container-fixed-lg">
     <div class="col-md-12">
         <div class="panel">
+            <dev class="panel-heading text-center">
+                <h2><?= ucfirst(\Core\Helpers\Date::dateToFr($date->format('Y-m-d H:i:s'), '%B %Y')) ?></h2>
+                <div class="btn-group" role="group">
+                    <?= Html::link(['calendars', 'index', "admin"], Html::fa('angle-left')." ".ucfirst(Date::dateToFr($date->modify('-1 month')->format('Y-m-d H:i:s'), '%B')) ,[$date->format('m'), $date->format('Y')], ['class' => 'btn btn-default']); ?>
+                    <?= Html::link(['calendars', 'index', "admin"], ucfirst(Date::dateToFr($date->modify('+2 month')->format('Y-m-d H:i:s'), '%B')) . " " .Html::fa('angle-right') ,[$date->format('m'), $date->format('Y')], ['class' => 'btn btn-default']); ?>
+                </div>
+            </dev>
             <div class="panel-body">
-                <?php \Core\Helpers\Calendar::drawCalendar(date("m"), date("Y"), $calendrier); ?>
+                <?php
+                $date->modify('-1 month');
+                Calendar::drawCalendar($date->format("m"),$date->format("Y") , $calendrier);
+
+                ?>
             </div>
         </div>
         <div class="panel">

@@ -52,7 +52,7 @@
                 <span class="icon-thumbnail"><?= Html::fa("binoculars"); ?></span>
             </li>
             <li>
-                <?= Html::link(["calendars", "index", "admin"],'<span class="title font-montserrat">Calendrier</span>')?>
+                <?= Html::link(["calendars", "index", "admin"],'<span class="title font-montserrat">Calendrier</span>', [date("m"), date("Y")])?>
                 <span class="icon-thumbnail"><?= Html::fa("calendar"); ?></span>
             </li>
             <li>

@@ -13,8 +13,18 @@ use Core\Lib\Debug;
 
 class CalendarsController extends AppController{
 
-    public function admin_index()
+    public function admin_index($month = null, $year = null)
     {
+        if($month == null)
+            $month = date("m");
+        if($year == null)
+            $year = date("Y");
+
+        $date = new \DateTime();
+        $date->setDate($year,$month, 1);
+        $date->setTime(0, 0, 0);
+
+
         if($this->Request->isPost)
         {
             $d['new'] = $this->Request->data;
@@ -34,8 +44,9 @@ class CalendarsController extends AppController{
             }
 
         }
-        $d['events'] = $this->Calendar->get();
-        $d['calendrier'] = $this->Calendar->getEvent(date("m"), date("Y"));
+        $d['date'] = $date;
+        $d['events'] = $this->Calendar->get(["where" => ["YEAR(date)" => $date->format("Y"), "MONTH(date)" => $date->format("m")]]);
+        $d['calendrier'] = $this->Calendar->getEvent($date->format("m"), $date->format("Y"));
 
         $this->set($d);
     }
