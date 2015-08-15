@@ -104,17 +104,22 @@ use Core\Helpers\Calendar;
     <div class="col-md-12">
         <div class="panel">
             <dev class="panel-heading text-center">
-                <h2><?= ucfirst(\Core\Helpers\Date::dateToFr($date->format('Y-m-d H:i:s'), '%B %Y')) ?></h2>
-                <div class="btn-group" role="group">
-                    <?= Html::link(['calendars', 'index', "admin"], Html::fa('angle-left')." ".ucfirst(Date::dateToFr($date->modify('-1 month')->format('Y-m-d H:i:s'), '%B')) ,[$date->format('m'), $date->format('Y')], ['class' => 'btn btn-default']); ?>
-                    <?= Html::link(['calendars', 'index', "admin"], ucfirst(Date::dateToFr($date->modify('+2 month')->format('Y-m-d H:i:s'), '%B')) . " " .Html::fa('angle-right') ,[$date->format('m'), $date->format('Y')], ['class' => 'btn btn-default']); ?>
+                <div class="rown">
+                    <h2><?= ucfirst(\Core\Helpers\Date::dateToFr($date->format('Y-m-d H:i:s'), '%B %Y')) ?></h2>
                 </div>
+                <div class="row">
+                    <div class="btn-group" role="group">
+                        <?= Html::link(['calendars', 'index', "admin"], Html::fa('arrow-left')." Mois précédent" ,[$date->modify('-1 month')->format('m'), $date->format('Y')], ['class' => 'btn btn-default']); ?>
+                        <a href="#" class="btn btn-default" data-toggle="modal" data-target="#modalSlideUp"><?= Html::fa('plus') ?> Ajouter événement</a>
+                        <?= Html::link(['calendars', 'index', "admin"],"Mois suivant " .Html::fa('arrow-right') ,[$date->modify('+2 month')->format('m'), $date->format('Y')], ['class' => 'btn btn-default']); ?>
+                    </div>
+                </div>
+
             </dev>
             <div class="panel-body">
                 <?php
-                $date->modify('-1 month');
-                Calendar::drawCalendar($date->format("m"),$date->format("Y") , $calendrier);
-
+                    $date->modify('-1 month');
+                    Calendar::drawCalendar($date->format("m"),$date->format("Y") , $calendrier);
                 ?>
             </div>
         </div>
@@ -135,11 +140,6 @@ use Core\Helpers\Calendar;
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td colspan="8" class="text-center">
-                            <a href="#" class="text-primary" data-toggle="modal" data-target="#modalSlideUp"><?= Html::fa('plus') ?> Ajouter un événement</a>
-                        </td>
-                    </tr>
                     <?php foreach ($events as $event) : ?>
                         <tr>
                             <td><?= $event->date; ?></td>

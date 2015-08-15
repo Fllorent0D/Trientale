@@ -355,9 +355,7 @@ body.dashboard .page-container {
 .page-sidebar .sidebar-menu .menu-items>li>a>.title {
     float: left;
     white-space: nowrap;
-    text-overflow: ellipsis;
     overflow: hidden;
-    width: 65%;
 }
 .page-sidebar .sidebar-menu .menu-items>li>a>.details {
     font-size: 12px;
@@ -1486,10 +1484,7 @@ body.dashboard .page-container {
     position: absolute;
     z-index: 602;
 }
-.panel-heading a[data-toggle] {
-    color: #626262;
-    opacity: .4;
-}
+
 .panel-heading a[data-toggle].portlet-refresh {
     -webkit-transition: opacity 0.3s ease;
     transition: opacity 0.3s ease;

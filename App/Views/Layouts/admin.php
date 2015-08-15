@@ -28,7 +28,7 @@
 <nav class="page-sidebar" data-pages="sidebar">
 
     <div class="sidebar-header">
-        <?= Html::img('admin_logo.png', 'logo', ['height' => '30', 'width' => '140']); ?>
+        <?= Html::img('logoblackbg.png', 'logo', ['height' => '30', 'width' => '150']); ?>
     </div>
 
 
@@ -36,41 +36,76 @@
 
         <ul class="menu-items">
             <li class="m-t-30">
-                <?= Html::link(["home", "index", "admin"],'<span class="title font-montserrat">Accueil </span>')?>
+                <?= Html::link(["home", "index", "admin"],'<span class="title">Accueil </span>', ["class" => "detailled"])?>
                 <span class="icon-thumbnail"><?= Html::fa("home"); ?></span>
             </li>
-            <li>
-                <?= Html::link(["users", "manage", "admin"],'<span class="title font-montserrat">Utilisateurs </span>')?>
-                <span class="icon-thumbnail"><?= Html::fa("users"); ?></span>
+
+            <li class="">
+                <a href="javascript:;"><span class="title">Dossiers</span>
+                    <span class=" arrow"></span></a>
+                <span class="icon-thumbnail "><?= Html::fa("newspaper-o"); ?></span>
+                <ul class="sub-menu">
+                    <li>
+                        <?= Html::link(["visites", "index", "admin"],'<span class="title">Comptes rendus</span>')?>
+                        <span class="icon-thumbnail"><?= Html::fa("binoculars"); ?></span>
+                    </li>
+                    <li>
+                        <?= Html::link(["carnets", "index", "admin"],'<span class="title">Carnets</span>')?>
+                        <span class="icon-thumbnail"><?= Html::fa("book"); ?></span>
+                    </li>
+                </ul>
+            </li>
+            <li class="">
+                <a href="javascript:;"><span class="title">A propos</span>
+                    <span class=" arrow"></span></a>
+                <span class="icon-thumbnail "><?= Html::fa("question"); ?></span>
+                <ul class="sub-menu">
+                    <li>
+                        <?= Html::link(["abouts", "index", "admin"],'<span class="title">De la trientale</span>')?>
+                        <span class="icon-thumbnail"><?= Html::fa("edit"); ?></span>
+                    </li>
+                    <li>
+                        <?= Html::link(["carnets", "index", "admin"],'<span class="title">Des réserves naturels</span>')?>
+                        <span class="icon-thumbnail"><?= Html::fa("leaf"); ?></span>
+                    </li>
+                </ul>
             </li>
             <li>
-                <?= Html::link(["carnets", "index", "admin"],'<span class="title font-montserrat">Carnets</span>')?>
-                <span class="icon-thumbnail"><?= Html::fa("book"); ?></span>
-            </li>
-            <li>
-                <?= Html::link(["visites", "index", "admin"],'<span class="title font-montserrat">Visites</span>')?>
-                <span class="icon-thumbnail"><?= Html::fa("binoculars"); ?></span>
-            </li>
-            <li>
-                <?= Html::link(["calendars", "index", "admin"],'<span class="title font-montserrat">Calendrier</span>', [date("m"), date("Y")])?>
+                <?= Html::link(["calendars", "index", "admin"],'<span class="title">Calendrier</span>', [date("m"), date("Y")])?>
                 <span class="icon-thumbnail"><?= Html::fa("calendar"); ?></span>
             </li>
             <li>
-                <?= Html::link(["galleries", "index", "admin"],'<span class="title font-montserrat">Galeries</span>')?>
+                <?= Html::link(["galleries", "index", "admin"],'<span class="title">Galeries</span>')?>
                 <span class="icon-thumbnail"><?= Html::fa("camera"); ?></span>
             </li>
+
             <li>
-                <?= Html::link(["abouts", "index", "admin"],'<span class="title font-montserrat">A propos</span>')?>
-                <span class="icon-thumbnail"><?= Html::fa("edit"); ?></span>
-            </li>
-            <li>
-                <?= Html::link(["messages", "index", "admin"],'<span class="title font-montserrat">Messagerie</span>')?>
+                <?= Html::link(["messages", "index", "admin"],'<span class="title">Messagerie</span>')?>
                 <span class="icon-thumbnail"><?= Html::fa("envelope"); ?></span>
             </li>
+            <li class="">
+                <a href="javascript:;"><span class="title">Réglages</span>
+                    <span class=" arrow"></span></a>
+                <span class="icon-thumbnail "><?= Html::fa("cog"); ?></span>
+                <ul class="sub-menu">
+                    <li>
+                        <?= Html::link(["users", "manage", "admin"],'<span class="title">Utilisateurs</span>')?>
+                        <span class="icon-thumbnail"><?= Html::fa("users"); ?></span>
+                    </li>
+                    <li>
+                        <?= Html::link(["carnets", "index", "admin"],'<span class="title">Réglages Email</span>')?>
+                        <span class="icon-thumbnail"><?= Html::fa("upload"); ?></span>
+                    </li>
+                    <li>
+                        <?= Html::link(["carnets", "index", "admin"],'<span class="title">Changelog</span>')?>
+                        <span class="icon-thumbnail"><?= Html::fa("info"); ?></span>
+                    </li>
+                </ul>
+            </li>
+
         </ul>
         <div class="clearfix"></div>
     </div>
-
 </nav>
 
 
@@ -92,7 +127,7 @@
         <div class=" pull-left sm-table">
             <div class="header-inner">
                 <div class="brand inline">
-                    <?= Html::img('admin_logo.png', 'logo', ['height' => '30', 'width' => '140']);?>
+                    <?= Html::img('logowhitebg.png', 'logo', ['height' => '30', 'width' => '150']);?>
                 </div>
 
             </div>
@@ -109,8 +144,10 @@
 
                     </button>
                     <ul class="dropdown-menu profile-dropdown" role="menu">
-                        <li><?= Html::link(["home", "index"], Html::fa('arrow-left'). 'Retourner sur le site'); ?>
+                        <li>
+                            <?= Html::link(["home", "index"], Html::fa('arrow-left'). 'Retourner sur le site'); ?>
                         </li>
+
                         <li class="bg-master-lighter">
                             <?= Html::link(['users', 'logout'], '<span class="pull-right">'.Html::fa('sign-out').'</span> Déconnexion', [], ['class' => 'clearfix']); ?>
                         </li>
@@ -155,9 +192,12 @@
 
         <div class="container-fluid container-fixed-lg footer">
             <div class="copyright sm-text-center">
-                <p class="small no-margin pull-right sm-pull-reset">
+                <span class="small no-margin">
+                    <?= Html::fa('code') ?> Version 0.1
+                </span>
+                <span class="small no-margin pull-right sm-pull-reset">
                     Powered by <a href="//mvc.swith.fr/">Swith Framework</a> <span class="hint-text">&amp; Made with Love <?= Html::fa("heart"); ?></span>
-                </p>
+                </span>
                 <div class="clearfix"></div>
             </div>
         </div>
