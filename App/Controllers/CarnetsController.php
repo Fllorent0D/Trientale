@@ -20,6 +20,26 @@ class CarnetsController extends AppController {
         $d["carnets"] = $this->Carnet->get(["order" => "annee DESC, numero"]);
         $this->set($d);
     }
+    public function download($id)
+    {
+        $file = $this->Carnet->getFirst(['where' => ["id" => $id], 'fields' => 'file'])->file;
+        $path = getcwd()."/files/carnets/". $file;
+
+        header("Content-Type: application/octet-stream");
+        header("Content-Disposition: attachment; filename=" . $file);
+        header("Content-Type: application/octet-stream");
+        header("Content-Type: application/download");
+        header("Content-Description: File Transfer");
+        header("Content-Length: " . filesize($path));
+        flush();
+        $fp = fopen($path, "r");
+        while (!feof($fp))
+        {
+            echo fread($fp, 65536);
+            flush(); // this is essential for large downloads
+        }
+        fclose($fp);
+    }
 
     public function admin_index(){
         $d = [];

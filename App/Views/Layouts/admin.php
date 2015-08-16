@@ -93,13 +93,18 @@
                         <span class="icon-thumbnail"><?= Html::fa("users"); ?></span>
                     </li>
                     <li>
-                        <?= Html::link(["carnets", "index", "admin"],'<span class="title">Réglages Email</span>')?>
+                        <?= Html::link(["settings", "email", "admin"],'<span class="title">Email</span>')?>
                         <span class="icon-thumbnail"><?= Html::fa("upload"); ?></span>
                     </li>
                     <li>
-                        <?= Html::link(["carnets", "index", "admin"],'<span class="title">Changelog</span>')?>
+                        <?= Html::link(["backups", "index", "admin"],'<span class="title">Backups</span>')?>
+                        <span class="icon-thumbnail"><?= Html::fa("database"); ?></span>
+                    </li>
+                    <li>
+                        <?= Html::link(["settings", "changelog", "admin"],'<span class="title">Changelog</span>')?>
                         <span class="icon-thumbnail"><?= Html::fa("info"); ?></span>
                     </li>
+
                 </ul>
             </li>
 

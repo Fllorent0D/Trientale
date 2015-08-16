@@ -57,7 +57,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group <?= (isset($error['message']))? "has-error" : ""; ?>">
                                     <label>Message</label>
-                                    <?= Form::textarea('message',['class'=>'form-control', 'rows' => 5], (isset($reply->message))? $reply->message : ""); ?>
+                                    <?= Form::textarea('message',['class'=>'form-control', 'rows' => 10], (isset($reply->message))? $reply->message : ""); ?>
                                 </div>
                                 <?= (isset($error['message']))? "<label class=\"text-danger\">".$error['message']."</label>":""; ?>
 

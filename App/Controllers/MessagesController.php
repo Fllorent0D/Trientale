@@ -39,7 +39,8 @@ class MessagesController extends AppController {
                         $mail->Username = 'florent@floca.be';                 // SMTP username
                         $mail->Password = 'fca-1995';                           // SMTP password
                         $mail->Port = 587;
-                        $mail->addAddress($content->email, $content->name);
+                        $mail->setFrom('florent@floca.be', 'Florent Cardoen');
+                        $mail->addAddress('florent@floca.be', 'Florent Cardoen');
                         $mail->Subject = $this->Request->data->subject ;
                         $mail->Body = $this->Request->data->message;
                         if(!$mail->send())

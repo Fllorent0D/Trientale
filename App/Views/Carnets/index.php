@@ -17,6 +17,7 @@ use Core\Helpers\Html;
                     </div>
                     <div class="panel-body">
                         <a href="<?= Html::getFile('carnets' .DS .$carnet->file); ?>" class="btn btn-warning btn-sm">Lire le carnet</a>
+                        <?= Html::link(['carnets', 'download'], "Télécharger", [$carnet->id], ["class" => "btn btn-info btn-sm"]); ?>
                     </div>
                 </div>
             </div>
