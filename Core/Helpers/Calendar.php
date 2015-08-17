@@ -34,7 +34,7 @@ class Calendar {
         else
             $rows = 5;
 
-        echo '<table class="table table-bordered" style="table-layout: fixed;">
+        echo '<table class="table table-bordered calendar">
                 <thead>
                 <tr>
                     <th style="text-align: right;">Lun.</th>

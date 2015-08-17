@@ -31,16 +31,18 @@ class MessagesController extends AppController {
                 {
                     if($this->Message->Validate($this->Request->data))
                     {
+                        $this->loadModel('Setting');
+                        $settings = $this->Setting->getSettings();
                         $mail = new \PHPMailer();
                         $mail->isSMTP();
-                        $mail->Host = 'mail.shost.ca';
+                        $mail->Host = $settings["smtp_host"];
                         $mail->SMTPAuth = true;                               // Enable SMTP authentication
                         $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-                        $mail->Username = 'florent@floca.be';                 // SMTP username
-                        $mail->Password = 'fca-1995';                           // SMTP password
+                        $mail->Username = $settings["smtp_user"];                 // SMTP username
+                        $mail->Password = $settings["smtp_pwd"];                           // SMTP password
                         $mail->Port = 587;
-                        $mail->setFrom('florent@floca.be', 'Florent Cardoen');
-                        $mail->addAddress('florent@floca.be', 'Florent Cardoen');
+                        $mail->setFrom($settings["smtp_user"], $settings["mail_name"]);
+                        $mail->addAddress($content->email, $content->name);
                         $mail->Subject = $this->Request->data->subject ;
                         $mail->Body = $this->Request->data->message;
                         if(!$mail->send())
@@ -67,7 +69,6 @@ class MessagesController extends AppController {
 
 
         }
-
         $d['messages'] = $this->Message->get(['order' => 'id DESC']);
         $this->set($d);
     }

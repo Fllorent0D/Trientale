@@ -13,7 +13,6 @@ class Backup extends AppModel
 {
     public function exportDB()
     {
-        print('Sauvegarde de la base MySQL...<br />');
         $output = "-- PHP MySQL Dump\n--\n";
         $output .= "-- Generated: " . date("r", time()) . "\n";
         $output .= "-- PHP Version: " . phpversion() . "\n\n";
@@ -21,7 +20,6 @@ class Backup extends AppModel
         // get all table names in db and stuff them into an array
         $tables = array();
         $stmt = $this->bdd->query("SHOW TABLES");
-        print('Lecture tables...<br />');
         while($row = $stmt->fetch(\PDO::FETCH_NUM))
         {
             $tables[] = $row[0];
@@ -29,7 +27,6 @@ class Backup extends AppModel
         // process each table in the db
         foreach($tables as $table)
         {
-            print('Sauvegarde de la table \''.$table.'\'...<br/>');
             $fields = "";
             $sep2 = "";
             $output .= "\n-- " . str_repeat("-", 60) . "\n\n";

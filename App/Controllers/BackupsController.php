@@ -13,44 +13,50 @@ use Core\Lib\Debug;
 
 class BackupsController extends AppController
 {
+    public $output = "";
+
     public function admin_index()
     {
 
     }
-    public function admin_save($files = true, $db = true)
+    public function admin_save()
     {
-        $this->needRender = false;
-        if($db OR $files)
+        if($this->Request->isPost AND (isset($this->Request->data->file) OR isset($this->Request->data->database)))
         {
             set_time_limit(240);
+            $post = $this->Request->data;
+
             $directory ='../../Backups/'.date('Y.m.d-H.i.s').'/';
             mkdir($directory);
 
-            if($db)
+            if(isset($post->database) && $post->database)
                 $this->saveDb($directory);
 
-            if($files)
+            if(isset($post->file) && $post->file)
                 $this->saveFiles($directory);
 
-            print('Sauvegarde terminée!');
+            $this->output .= 'Sauvegarde terminée!';
+            $d["log"] = $this->output;
+            $this->set($d);
         }
 
 
     }
     private function saveDb($dir)
     {
+        $this->output .= 'Sauvegarde de la base MySQL...<br />';
         $export = $this->Backup->exportDB();
-        print('Ecriture du fichier SQL...<br/>');
+        $this->output .= 'Ecriture du fichier SQL...<br/>';
         $file = fopen($dir.'backup_database.sql', 'w');
         fwrite($file, $export);
         fclose($file);
-        print('Sauvegarde de la base de données terminée!<br /><br />');
+        $this->output .= 'Sauvegarde de la base de données terminée!<br /><br />';
 
     }
     private function saveFiles($dir)
     {
-        print('Sauvegarde des fichiers...<br />');
-        print('Listage des fichiers à sauvegarder...<br />');
+        $this->output .= 'Sauvegarde des fichiers...<br />';
+        $this->output .= 'Listage des fichiers à sauvegarder...<br />';
         $rootPath = dirname(dirname(getcwd()));
         $name = 'backup_files.zip';
 
@@ -72,11 +78,11 @@ class BackupsController extends AppController
                 $zip->addFile($filePath, $relativePath);
             }
         }
-        print('Listage terminé!<br />');
-        print('Création de l\'archive...<br />');
+        $this->output .= 'Listage terminé!<br />';
+        $this->output .= 'Création de l\'archive...<br />';
 
         $zip->close();
-        print('Sauvegarde des fichiers terminé!<br /><br />');
+        $this->output .= 'Sauvegarde des fichiers terminé!<br /><br />';
 
     }
 }

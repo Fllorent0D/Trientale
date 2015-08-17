@@ -1,6 +1,11 @@
 html {
     height: 100%;
 }
+.calendar
+{
+    table-layout: fixed;
+}
+
 body {
     background-color: #fafafa;
     height: 100%;

@@ -31,6 +31,8 @@ class UsersController extends AppController{
         }
         $this->set($d);
     }
+
+
     public function index()
     {
         $this->redirect("users/connect");

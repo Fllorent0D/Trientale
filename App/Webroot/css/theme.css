@@ -142,6 +142,11 @@ header {
     display: inline-block;
     margin: 0;
 }
+.calendar
+{
+    table-layout: fixed;
+}
+
 /* Footer
 -------------------------------------------------- */
 td>div, th 
