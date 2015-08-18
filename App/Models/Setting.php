@@ -30,6 +30,12 @@ class Setting extends AppModel
         ],
         "mail_signature" => [
             ["ruleName" => "required", "message" => "Vous devez rentrer une signature"]
+        ],
+        "footer_title"=> [
+            ["ruleName" => "required", "message" => "Vous devez rentrer un titre"]
+        ],
+        "footer_text"=> [
+            ["ruleName" => "required", "message" => "Vous devez rentrer du text"]
         ]
 
     ];
@@ -43,7 +49,7 @@ class Setting extends AppModel
     public function updateValue($key, $value)
     {
         $request = $this->bdd->prepare("UPDATE settings SET value = ? WHERE name = ?");
-        $request->execute([$value, $key]);
+        $request->execute([nl2br($value), $key]);
     }
     public function getSettings()
     {

@@ -11,7 +11,13 @@ use Core\Lib\Debug;
 
 class SettingsController extends AppController
 {
-    public function admin_email()
+
+    public function admin_changelog()
+    {
+
+    }
+
+    public function admin_index()
     {
         $d = [];
         if($this->Request->isPost)
@@ -21,6 +27,7 @@ class SettingsController extends AppController
                 foreach($this->Request->data as $key => $value)
                 {
                     $this->Setting->updateValue($key, $value);
+                    $this->Session->setFlash('Réglages mis à jour');
                 }
             }
             else
@@ -31,10 +38,6 @@ class SettingsController extends AppController
         }
         $d["settings"] = $this->Setting->getSettings();
         $this->set($d);
-    }
-    public function admin_changelog()
-    {
-
     }
 
 }

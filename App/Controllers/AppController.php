@@ -11,8 +11,6 @@ class AppController extends Controller
 
     public function beforeRender(){
 
-
-
         if(isset($this->Request->prefixe) && $this->Request->prefixe == "admin"){
             if(!$this->Auth->isLogged()) {
                 $this->Session->setFlash('Vous devez être connecté pour effectuer cette action !','danger');
@@ -23,6 +21,7 @@ class AppController extends Controller
         else
         {
             $this->loadModel("Message");
+            $this->loadModel("Setting");
             if($this->Request->isPost AND $this->Request->controller != "users")
             {
                 if($this->Message->Validate($this->Request->data))
@@ -38,10 +37,14 @@ class AppController extends Controller
                     $d['contactData'] = $this->Request->data;
                     $d['contactErrors'] = $this->Message->getErrors();
                 }
-                $this->set($d);
             }
+            $d["settings"] = $this->Setting->getSettings();
+            $this->set($d);
 
         }
+
+
+
 
     }
 

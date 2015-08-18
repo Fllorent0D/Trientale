@@ -17,7 +17,7 @@ class CarnetsController extends AppController {
 
     public function index()
     {
-        $d["carnets"] = $this->Carnet->get(["order" => "annee DESC, numero"]);
+        $d["carnets"] = $this->Carnet->getByYears();
         $this->set($d);
     }
     public function download($id)
@@ -69,7 +69,7 @@ class CarnetsController extends AppController {
             }
         }
         //Debug::debug($d);
-        $d["carnets"] = $this->Carnet->get(["order" => "annee DESC, numero"]);
+        $d["carnets"] = $this->Carnet->get(["order" => "annee DESC, numero DESC"]);
 
         $this->set($d);
     }

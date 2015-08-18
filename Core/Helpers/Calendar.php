@@ -10,6 +10,7 @@ namespace Core\Helpers;
 
 
 use Core\Lib\Debug;
+use Core\Helpers\Html;
 
 class Calendar {
 
@@ -76,7 +77,7 @@ class Calendar {
                     foreach ($event as $key => $val)
                     {
                         if ($val['date'] === $ldate)
-                            $button .= '<a href="'.$val["link"].'" class="label label-'.$val['color'].'">'.$val["title"].'</a><br>';
+                            $button .= Html::link(['calendars', 'event'], $val["title"], [$val["id"]], ["class" => "label label-".$val["color"]]).'<br />';
 
                     }
 

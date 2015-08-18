@@ -43,7 +43,7 @@ class Calendar extends AppModel {
         $result = [];
         foreach($rawEvents as $event)
         {
-            array_push($result, ["date" => $event->date, "title" => $event->category,"color"=> $event->color ,"link" => "calendars/event/".$event->id]);
+            array_push($result, ["date" => $event->date, "title" => $event->category,"color"=> $event->color ,"id" => $event->id]);
         }
         return $result;
     }

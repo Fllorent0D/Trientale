@@ -12,6 +12,14 @@ class Text
      * @param $limit
      * @return string
      */
+    public static function br2nl($text){
+
+        $text = str_replace(array("\r", "\n"), '', $text);
+        $text = str_replace(array('<br>', '<br />'), "\n", $text);
+
+        return $text;
+
+    }
     public static function cut($text, $limit)
     {
         if (strlen($text) > $limit) {

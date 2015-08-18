@@ -33,7 +33,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="home/index" class="navbar-brand"><strong><i class="fa fa-leaf"></i> LA TRIENTALE</strong></a>
+                    <?= Html::link(["home", "index"],'<strong>'.Html::fa("leaf"). " LA TRIENTALE</strong>", [], ["class" => "navbar-brand"]); ?>
                 </div>
 
                 <div class="collapse navbar-collapse navbar-ex1-collapse" role="navigation">
@@ -63,7 +63,7 @@
                             </ul>
                         </li>
                         <li><a href="#">LIENS</a></li>
-                        <li><a href="#">GLOSSAIRE</a></li>
+                        <li><?= Html::link(['glossaires', 'index'], "GLOSSAIRE"); ?></li>
                     </ul>
                 </div>
             </div>
@@ -79,10 +79,10 @@
                 <div class="row info">
                     <div class="col-sm-6 testimonials">
                         <h4>
-                            Cercles des Naturalistes de Belgique CNB
+                            <?= $settings["footer_title"]; ?>
                         </h4>
                         <div class="quote">
-                            Les Cercles organisent de nombreuses activités très diversifiées de formations, de découvertes ... ouvertes à tous dans les régions francophone et germanophone du pays. Nous rassemblons près de 10.000 membres et éditons à leur intention un périodique trimestriel "L'ÉRABLE" qui annonce entre autres toutes les activités. En collaboration avec l'Entente nationale pour la Protection de la Nature, la société intervient régulièrement en faveur de la défense de la nature et de l'environnement.
+                            <?= $settings["footer_text"]; ?>
                         </div>
                     </div>
                     <div class="col-sm-6 contact">

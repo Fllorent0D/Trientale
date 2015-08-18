@@ -51,5 +51,18 @@ class CalendarsController extends AppController{
         $this->set($d);
     }
 
+    public function event($id = null)
+    {
+        if(is_null($id) OR !is_numeric($id))
+            $this->redirect('home/index');
+
+
+        $d["event"] = $this->Calendar->getFirst(["where" => ["id" => $id]]);
+        $this->set($d);
+    }
+
+
+
+
 
 }
