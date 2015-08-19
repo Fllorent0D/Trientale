@@ -17,7 +17,7 @@ use DateTime;
 class VisitesController extends AppController {
     public function index()
     {
-        $d["visites"] = $this->Visite->get(['order' => 'date DESC']);
+        $d["visites"] = $this->Visite->paginate(['order' => 'date DESC'], 5);
         $this->set($d);
     }
     public function lire($id)

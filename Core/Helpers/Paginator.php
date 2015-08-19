@@ -39,7 +39,7 @@ class Paginator
      */
     public static function start($previous)
     {
-        $html = "<ul>";
+        $html = "<ul class=\"pagination\">";
         if ($previous) {
             $page = $_GET['page'] - 1 <= 1 ? 1 : $_GET['page'] - 1;
             if ($_GET['page'] != 1) {

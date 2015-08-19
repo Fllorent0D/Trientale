@@ -59,7 +59,7 @@
                             <a href="index.html#" class="dropdown-toggle" data-toggle="dropdown">GALERIES<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><?= Html::link(['galleries', 'index'], "Galeries de la Trientale"); ?></li>
-                                <li><a href="#">Galeries des membres</a></li>
+                                <li><?= Html::link(['members', 'index'], "Galeries des membres"); ?></li>
                             </ul>
                         </li>
                         <li><a href="#">LIENS</a></li>

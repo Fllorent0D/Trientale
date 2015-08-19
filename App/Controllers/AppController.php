@@ -11,11 +11,29 @@ class AppController extends Controller
 
     public function beforeRender(){
 
-        if(isset($this->Request->prefixe) && $this->Request->prefixe == "admin"){
+        if(isset($this->Request->prefixe) && $this->Request->prefixe == "admin")
+        {
             if(!$this->Auth->isLogged()) {
                 $this->Session->setFlash('Vous devez être connecté pour effectuer cette action !','danger');
                 $this->redirect('users/connect');
             }
+            $pages = [
+                "home" => "Accueil Administration",
+                "backups" => "Backup",
+                "calendars" => "Calendrier",
+                "carnets" => "Carnets",
+                "galleries" => "Galeries",
+                "glossaires" => "Glossaire",
+                "home"=> "Accueil",
+                "members" => "Membres",
+                "messages" => "Messagerie",
+                "photos" => "Photos",
+                "settings" => "Réglages",
+                "users" => "Utilisateurs",
+                "visites" => "Comptes Rendus",
+                "abouts" => "A propos"
+                ];
+            $d["pageTitle"] = $pages[$this->Request->controller];
             $this->layout = 'admin';
         }
         else
@@ -39,10 +57,10 @@ class AppController extends Controller
                 }
             }
             $d["settings"] = $this->Setting->getSettings();
-            $this->set($d);
 
         }
 
+        $this->set($d);
 
 
 

@@ -811,14 +811,19 @@ body.dashboard .page-container {
     display: block;
 }
 .breadcrumb a {
-    margin-left: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-family: 'Montserrat';
+    font-size: 13px !important;
+    font-weight: 400;
+    color: #7b7d82;
 }
 .breadcrumb li {
     padding-left: 0px;
 }
 .breadcrumb li p {
     font-family: 'Montserrat';
-    font-size: 11px!important;
+    font-size: 13px!important;
     font-weight: 400;
     color: #7b7d82;
     margin: 0;
@@ -831,11 +836,12 @@ body.dashboard .page-container {
 .breadcrumb>li+li:before {
     padding: 0 5px;
     color: #515050;
+    font-size: 13px;
     font-family: FontAwesome;
     content: "\f105";
     font-weight: bold;
 }
-.breadcrumb a,
+.breadcrumba a,
 .breadcrumb i,
 .breadcrumb span,
 .breadcrumb li {

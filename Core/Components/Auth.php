@@ -19,15 +19,18 @@ class Auth
         $user = $userModel->getLogged(addslashes($data->login));
         if ($user) {
             // on évite les collisions avec une surcouche de cryptage
-            if (sha1(crypt($data->password,$_ENV['SALT_KEY'])) != $user->password) {
+            if ($this->encryptData($data->password) != $user->password) {
                 return false;
             } else {
                 $_SESSION['id'] = $user->id;
-                $_SESSION['role'] = $user->role;
-                $_SESSION['nom'] = $user->nom;
+                if (isset($user->role)) {
+                    $_SESSION['role'] = $user->role;
+                }
                 if ($remember) {
                     Cookie::set("id", $user->id);
-                    Cookie::set("role", $user->role);
+                    if (isset($user->role)) {
+                        Cookie::set("role", $user->role);
+                    }
                 }
                 return true;
             }
@@ -43,7 +46,7 @@ class Auth
      */
     public function register($userModel, $data){
         $data->login = addslashes($data->login);
-        $data->password = sha1(crypt($data->password,$_ENV['SALT_KEY']));
+        $data->password = $this->encryptData($data->password);
         $userModel->create($data,'users');
     }
 
@@ -53,7 +56,7 @@ class Auth
      */
     public function isLogged()
     {
-        return (isset($_SESSION['id']) || isset($_COOKIE['id']));
+        return isset($_SESSION['id'])||isset($_COOKIE['id']);
     }
 
     /**
@@ -62,7 +65,7 @@ class Auth
      */
     public function id()
     {
-        return $_SESSION['id'];
+        return isset($_SESSION['id']) ? $_SESSION['id'] : false ;
     }
 
     /**
@@ -71,7 +74,7 @@ class Auth
      */
     public function role()
     {
-        return $_SESSION['role'];
+        return isset($_SESSION['role']) ? $_SESSION['role'] : false ;
     }
 
 
@@ -83,7 +86,6 @@ class Auth
     {
         unset($_SESSION['id']);
         unset($_SESSION['role']);
-        unset($_SESSION['nom']);
         if ($remove) {
             $this->remove();
         }
@@ -96,6 +98,16 @@ class Auth
     {
         Cookie::remove("id");
         Cookie::remove("role");
+    }
+
+    /**
+     * crypte une chaine de caractères
+     * @param $data
+     * @return string
+     */
+    public function encryptData($data)
+    {
+        return sha1(crypt($data,$_ENV['SALT_KEY']));
     }
 
 }

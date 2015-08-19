@@ -5,9 +5,7 @@ namespace App\Controllers;
 
 class HomeController extends AppController
 {
-    /**
-     * Fonction d'accueil
-     */
+    protected $hasModel = false;
     public function index()
     {
         $this->loadModel("Calendar");

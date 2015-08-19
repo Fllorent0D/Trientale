@@ -50,7 +50,14 @@ class Model
      * mais il se peut que pour un model on en est pas besoin
      * @var bool
      */
-    protected $needEntity = false;
+    protected $needEntity = null;
+
+    /**
+     * Si on utilise les entités mais pas pour tous les models
+     * on utilise le fetch obj par defaut
+     * @var null
+     */
+    private $fetchObjByDefaultIfDontNeedEntity = null;
 
     /*
         METHODES
@@ -58,7 +65,6 @@ class Model
 
     public function __construct($data)
     {
-
         $this->data = $data;
 
         // Initialisation des variables
@@ -68,7 +74,7 @@ class Model
             $this->bdd = DbProvider::getDb();
         }
 
-        $this->needEntity = $_ENV['DB_OPTION_FETCH_MODE'] == 'PDO::FETCH_CLASS';
+        $this->setNeedEntity();
     }
 
     /**
@@ -85,6 +91,20 @@ class Model
             }
             if (!$this->table) {
                 $this->table = strtolower($matches[1]) . 's';
+            }
+        }
+    }
+
+    /**
+     * Définit si on utilise ou non une entité
+     */
+    private function setNeedEntity()
+    {
+        if ($_ENV['DB_OPTION_FETCH_MODE'] == 'PDO::FETCH_CLASS') {
+            if(is_null($this->needEntity)) {
+                $this->needEntity = true;
+            } else {
+                $this->fetchObjByDefaultIfDontNeedEntity = \PDO::FETCH_OBJ;
             }
         }
     }
@@ -126,7 +146,7 @@ class Model
                     (new SwithError([
                         "title" => "Liaison manquante",
                         "message" => "Le model " . $this->name . " n'a pas d'association avec la table $j ! Veuillez créer un tableau public \$joins dans votre model " . $this->name
-                    ]))->display;
+                    ]))->display();
                 } else {
                     $joins[] = " JOIN $j ON $j.{$this->primaryKey} = {$this->table}." . $this->joins[$j];
                 }
@@ -151,15 +171,6 @@ class Model
             }
         }
 
-        // Si on a une limite
-        if (isset($conditions['limit'])) {
-            if (isset($conditions['offset'])) {
-                $query .= " LIMIT " . $conditions['offset'] . "," . $conditions['limit'];
-            } else {
-                $query .= " LIMIT " . $conditions['limit'];
-            }
-        }
-
         // Si on a un group by
         if (isset($conditions['groupBy'])) {
             $query .= " GROUP BY " . $conditions['groupBy'];
@@ -170,13 +181,21 @@ class Model
             $query .= " ORDER BY " . $conditions['order'];
         }
 
-        // debug($query);
+        // Si on a une limite
+        if (isset($conditions['limit'])) {
+            if (isset($conditions['offset'])) {
+                $query .= " LIMIT " . $conditions['offset'] . "," . $conditions['limit'];
+            } else {
+                $query .= " LIMIT " . $conditions['limit'];
+            }
+        }
+
         $req = $this->bdd->query($query);
 
         if ($this->needEntity == true) {
             return $req->fetchAll(\PDO::FETCH_CLASS, 'App\\Models\\Entities\\' . $this->name . 'Entity');
         } else {
-            return $req->fetchAll();
+            return $req->fetchAll($this->fetchObjByDefaultIfDontNeedEntity);
         }
     }
 
@@ -214,7 +233,6 @@ class Model
      */
     public function create(\stdClass $data, $table = null)
     {
-
         if (method_exists($this, "beforeSave")) {
             $this->beforeSave($this->data);
         }
@@ -237,6 +255,7 @@ class Model
         $sql = 'INSERT INTO ' . $table . ' ' . $fields . ' VALUES ' . $tmp;
 
         $pdost = $this->bdd->prepare($sql);
+
         try {
             $pdost->execute($values);
             return true;
@@ -315,17 +334,43 @@ class Model
     }
 
     /**
+     * Vérifie si une entrée ayant les conditions en argument existe.
+     * @param $cond
+     * @return bool
+     */
+    public function exist($cond)
+    {
+        $values = $tmp = [];
+
+        foreach ($cond as $d => $v) {
+            $values[':' . $d] = htmlentities($v,ENT_QUOTES, "UTF-8");
+            $tmp[] = $d . "=:" . $d;
+        }
+        $tmp = implode(' AND ', $tmp);
+
+        $query = "SELECT COUNT({$this->primaryKey}) AS count FROM {$this->table} WHERE $tmp";
+        $pdost = $this->bdd->prepare($query);
+        $pdost->execute($values);
+
+        if ($this->needEntity) {
+            $pdost->setFetchMode(\PDO::FETCH_CLASS, 'App\\Models\\Entities\\' . $this->name . 'Entity');
+        }
+        $result = $pdost->fetch($this->fetchObjByDefaultIfDontNeedEntity);
+        return $result->count > 0;
+    }
+
+    /**
      * Permet de récuperer les infos en bdd pour vérifier si l'utilisateur à bien entré un bon login/mdp
      * @param string $login Le login entré par l'utilisateur
      * @return stdClass un objet content les indos trouvées.
      */
     public function getLogged($login)
     {
-        $req = $this->bdd->query("SELECT id,password,role, nom FROM users WHERE login='$login';");
+        $req = $this->bdd->query("SELECT id,password,role FROM users WHERE login='$login';");
         if ($this->needEntity) {
             $req->setFetchMode(\PDO::FETCH_CLASS, 'App\\Models\\Entities\\' . $this->name . 'Entity');
         }
-        return $req->fetch();
+        return $req->fetch($this->fetchObjByDefaultIfDontNeedEntity);
     }
 
     /**

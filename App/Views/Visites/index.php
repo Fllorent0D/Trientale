@@ -8,11 +8,13 @@
     use Core\Helpers\Html;
     use Core\Helpers\Text;
     use Core\Helpers\Date;
+
 ?>
 <div class="container">
     <div class="row">
-        <?php foreach($visites as $visite) : ?>
-            <div class="col-md-10">
+        <div class="col-md-10">
+
+        <?php foreach($visites["results"] as $visite) : ?>
                 <h2>
                     <?= Html::link(['visites', 'lire'], $visite->title , [$visite->id])?>
                 </h2>
@@ -26,9 +28,12 @@
                 <a class="btn btn-warning" href="<?= \Core\Helpers\Html::getFile('visites'. DS . $visite->file);?>">Télécharger le pdf <i class="fa fa-download"></i></a>
 
                 <hr>
-            </div>
         <?php endforeach; ?>
-        <div>
+            <?= \Core\Helpers\Paginator::paginate($visites["nbPages"], true, true); ?>
+
+        </div>
+
+
     </div>
 </div>
 
