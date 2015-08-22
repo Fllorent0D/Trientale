@@ -29,9 +29,7 @@ class Cookie
             $time = time() + $_ENV['COOKIE_DURATION'];
         }
 
-        setcookie($key, $value, $time);
-
-        return true;
+        return setcookie($key, $value, $time);
     }
 
     /**

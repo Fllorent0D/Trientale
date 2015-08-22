@@ -366,7 +366,7 @@ class Model
      */
     public function getLogged($login)
     {
-        $req = $this->bdd->query("SELECT id,password,role FROM users WHERE login='$login';");
+        $req = $this->bdd->query("SELECT * FROM users WHERE login='$login';");
         if ($this->needEntity) {
             $req->setFetchMode(\PDO::FETCH_CLASS, 'App\\Models\\Entities\\' . $this->name . 'Entity');
         }

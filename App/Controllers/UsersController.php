@@ -18,7 +18,7 @@ class UsersController extends AppController{
         $this->layout ="login";
         $d["post"] = [];
         if ($this->Request->isPost) {
-            if ($this->Auth->login($this->User, $this->Request->data, isset($this->Request->data->remember)? $this->Request->data->remember : ""))
+            if ($this->Auth->login($this->User, $this->Request->data, isset($this->Request->data->remember)))
             {
                 $this->Session->setFlash("Connecté");
                 $this->redirect("admin/home/index");

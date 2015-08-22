@@ -4,6 +4,7 @@ namespace Core\Components;
 
 
 use Core\Lib\Cookie;
+use Core\Lib\Debug;
 
 class Auth
 {
@@ -23,11 +24,13 @@ class Auth
                 return false;
             } else {
                 $_SESSION['id'] = $user->id;
+                $_SESSION['nom'] = $user->nom;
                 if (isset($user->role)) {
                     $_SESSION['role'] = $user->role;
                 }
                 if ($remember) {
                     Cookie::set("id", $user->id);
+
                     if (isset($user->role)) {
                         Cookie::set("role", $user->role);
                     }
