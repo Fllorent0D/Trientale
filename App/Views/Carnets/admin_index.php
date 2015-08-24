@@ -32,7 +32,7 @@
                                     <td><?= $carnet->annee; ?></td>
                                     <td><?= $carnet->numero; ?></td>
                                     <td>
-                                        <?= Html::link(['carnets', 'delete','admin'], Html::fa('times'), [$carnet->id], ["class" => "label label-danger" ,"data-toggle" => "tooltip", "data-placement" => "top", "title" => "Supprimer le carnet"]) ?>
+                                        <?= Html::link(['carnets', 'delete','admin'], Html::fa('times'), [$carnet->id], ["class" => "label label-danger" ,"data-toggle" => "tooltip", "data-placement" => "top", "title" => "Supprimer le carnet"], true) ?>
                                         <a href="<?= Html::getFile('carnets'. DS . $carnet->file); ?>" class="label label-success" data-toggle = "tooltip" data-placement = "top" title = "Afficher le carnet"><?= Html::fa('eye'); ?></a>
 
                                     </td>

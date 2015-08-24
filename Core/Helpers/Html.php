@@ -2,6 +2,8 @@
 
 namespace Core\Helpers;
 
+use Core\Helpers\CSRFTool;
+
 class Html
 {
     /**
@@ -10,9 +12,10 @@ class Html
      * @param string $name
      * @param array $params
      * @param array $options
+     * @param bool $csrf
      * @return string
      */
-    public static function link($url = [], $name, $params = [], $options = []){
+    public static function link($url = [], $name, $params = [], $options = [], $csrf = false){
 
         $controller = $url[0];
         $action = $url[1];
@@ -29,7 +32,14 @@ class Html
                 $param .= "/$v";
             }
         }
-        $return .= $param . "' ";
+        $return .= $param;
+
+        if($csrf)
+        {
+            $token = CSRFTool::generateToken();
+            $return .= "/?token=".$token;
+        }
+        $return.= "'";
 
         if ($options) {
             foreach ($options as $k => $v) {

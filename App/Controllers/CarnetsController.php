@@ -12,6 +12,7 @@ use Core\Helpers\Html;
 use Core\Helpers\Text;
 use Core\Helpers\Uploader;
 use Core\Lib\Debug;
+use Core\Helpers\CSRFTool;
 
 class CarnetsController extends AppController {
 
@@ -78,27 +79,35 @@ class CarnetsController extends AppController {
     {
         if(is_numeric($id))
         {
-            $user = $this->Carnet->getFirst(["where" => ["id" => $id]]);
-            //Debug::debug($user);
-            if(empty($user))
+            if(CSRFTool::check())
             {
-                $this->Session->setFlash("Ce carnet n'existe pas", "danger");
-                $this->redirect("admin/carnets/index");
+                $user = $this->Carnet->getFirst(["where" => ["id" => $id]]);
+                //Debug::debug($user);
+                if(empty($user))
+                {
+                    $this->Session->setFlash("Ce carnet n'existe pas", "danger");
+                }
+                else
+                {
+                    $this->Carnet->delete($user->id);
+                    unlink(BASE . DS . 'App' . DS . 'Webroot' . DS . 'files' . DS . 'carnets' . DS . $user->file);
+
+                    $this->Session->setFlash("Ce carnet a été supprimé", "success");
+                }
+                CSRFTool::removeToken();
             }
             else
             {
-                $this->Carnet->delete($user->id);
-                unlink(BASE . DS . 'App' . DS . 'Webroot' . DS . 'files' . DS . 'carnets' . DS . $user->file);
+                $this->Session->setFlash("Votre clé CSRF n'est pas valide. Merci de rafraichir la page et de recommencer", "danger");
 
-                $this->Session->setFlash("Ce carnet a été supprimé", "success");
-                $this->redirect("admin/carnets/index");
             }
+
         }
         else
         {
             $this->Session->setFlash("Ce carnet n'existe pas", "danger");
-            $this->redirect("admin/carnets/index");
         }
+        $this->redirect("admin/carnets/index");
 
     }
 } 

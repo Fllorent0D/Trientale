@@ -1,4 +1,5 @@
 <?php
+
 namespace Core\Helpers;
 
 class CSRFTool
@@ -33,7 +34,7 @@ class CSRFTool
      */
     public static function getPassedToken()
     {
-        return isset($_GET['token']) ? $_GET['token'] : isset($_POST['token']) ? $_POST['token'] : false;
+        return isset($_GET["token"]) ? $_GET["token"] : (isset($_POST['token']) ? $_POST['token'] : false);
     }
     /**
      * Supprime le token de la session
