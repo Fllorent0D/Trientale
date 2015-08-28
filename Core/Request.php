@@ -3,20 +3,20 @@
 namespace Core;
 
 use App\Config\App;
-
+use Core\Helpers\CSRFTool;
 class Request
 {
 
     public $url,             // url appellée par l'utilisateur
-           $action,          // Action demandée
-           $controller,      // Controller demandé
-           $referer = null,  // Page précédante
-           $params,          // Les paramettres requis
-           $prefixe = false, // Le prefixe requis si besoin
-           $isPost = false,  // La methode est de type post ?
-           $isRooted = false,// Si la requete est passé par une route personnalisée
-           $data = false,    // Les données postées
-           $page = 1;        // Pour la pagination
+        $action,          // Action demandée
+        $controller,      // Controller demandé
+        $referer = null,  // Page précédante
+        $params,          // Les paramettres requis
+        $prefixe = false, // Le prefixe requis si besoin
+        $isPost = false,  // La methode est de type post ?
+        $isRooted = false,// Si la requete est passé par une route personnalisée
+        $data = false,    // Les données postées
+        $page = 1;        // Pour la pagination
 
     public function __construct(App $app)
     {
@@ -52,13 +52,15 @@ class Request
      */
     private function setData()
     {
-        if (!empty($_POST)) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
             $this->isPost = true;
             $this->data = new \stdClass();
             foreach ($_POST as $k => $v) {
                 $this->data->$k = $v;
             }
             unset($_POST);
+
+            $_POST['token'] = CSRFTool::getAuthToken();
         }
     }
 

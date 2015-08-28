@@ -18,7 +18,7 @@ $col = 4;
                         <div class="col-md-<?= 12/$col ?>">
                             <?php for($j = $i; $j < count($photos); $j+=$col): ?>
                             <div class="row image">
-                                <a href="<?= Html::getFile('galleries'. DS . $galerie->slug . DS . $photos[$j]->file); ?>" data-lightbox="album" data-title="Click the right half of the image to move forward." >
+                                <a href="<?= Html::getFile('galleries'. DS . $galerie->slug . DS . $photos[$j]->file); ?>" data-lightbox="album" <?= (isset($photos[$j]->comment))? 'data-title="'.$photos[$j]->comment.'"':"" ?>>
                                     <img src="<?= Html::getFile('galleries'. DS . $galerie->slug . DS.'thumbnails' .DS. $photos[$j]->file); ?>" class="img-responsive" data-lightbox="album" />
 
                                 </a>
