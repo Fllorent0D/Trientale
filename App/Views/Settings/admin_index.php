@@ -119,4 +119,26 @@ use Core\Helpers\Text;
         </div>
 
     </div>
+    <div class="col-md-4">
+        <div class="panel">
+            <div class="panel-heading">
+                <h3>Google Analytics</h3>
+            </div>
+            <div class="panel-body">
+                <?= Form::start("admin/settings/index/", "POST", ['class' => 'form-default']); ?>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group <?= (isset($error['google_analytics_id']))? "has-error" : ""; ?>">
+                            <label>Code de suivi</label>
+                            <?= Form::input('text','google_analytics_id','',['class'=>'form-control', 'value' => (isset($settings['google_analytics_id']))? $settings['google_analytics_id'] : ""]); ?>
+                            <?= (isset($error['google_analytics_id']))? "<label class=\"text-danger\">".$error['google_analytics_id']."</label>":""; ?>
+                        </div>
+                    </div>
+                </div>
+
+                <?= Form::end("Enregistrer", ['class' => 'btn btn-info pull-right']); ?>
+            </div>
+        </div>
+
+    </div>
 </div>

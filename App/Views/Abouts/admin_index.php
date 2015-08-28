@@ -69,7 +69,10 @@ use Core\Helpers\Form;
                             <td><?= $about->place + 1; ?></td>
                             <td><?= $about->title; ?></td>
                             <td><?= \Core\Helpers\Text::cut($about->text, 100); ?></td>
-                            <td><?= Html::link(['users', 'delete','admin'], Html::fa('times'), [$about->id], ["class" => "text-danger" ,"data-toggle" => "tooltip", "data-placement" => "right", "title" => "Supprimer cette section"]) ?></td>
+                            <td>
+                                <?= Html::link(['users', 'modify','admin'], Html::fa('pencil'), [$about->id], ["class" => "text-success" ,"data-toggle" => "tooltip", "data-placement" => "right", "title" => "Modifier cette section"]) ?>
+                                <?= Html::link(['users', 'delete','admin'], Html::fa('times'), [$about->id], ["class" => "text-danger" ,"data-toggle" => "tooltip", "data-placement" => "right", "title" => "Supprimer cette section"]) ?>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                     <tr>

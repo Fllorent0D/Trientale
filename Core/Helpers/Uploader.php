@@ -11,13 +11,32 @@ class Uploader
         move_uploaded_file($file['tmp_name'], $dest . $name . $extension);
     }
 
-    public static function crop($file, $w, $h, $dest = null, $name = null)
+    public static function crop($file, $dest = null, $name = null, $thumbnail = false)
     {
         // Get new dimensions
         list($width, $height) = getimagesize($file);
-        $new_width = $w;
-        $new_height = $h;
 
+        if($thumbnail)
+        {
+
+            $new_width = 400;
+            $new_height = 400;
+        }
+        else
+        {
+            $new_width = 1024;
+            $new_height = 1024;
+        }
+
+        $ratio_orig = $width/$height;
+
+        if ($new_width/$new_height > $ratio_orig)
+        {
+            $new_width = $new_height*$ratio_orig;
+        } else
+        {
+            $new_height = $new_width/$ratio_orig;
+        }
         // Resample
         $image_p = imagecreatetruecolor($new_width, $new_height);
         $image = imagecreatefromjpeg($file);

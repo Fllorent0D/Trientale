@@ -37,7 +37,7 @@ class CarnetsController extends AppController {
         while (!feof($fp))
         {
             echo fread($fp, 65536);
-            flush(); // this is essential for large downloads
+            flush();
         }
         fclose($fp);
     }

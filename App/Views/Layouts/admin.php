@@ -25,6 +25,17 @@
 </head>
 <body class="fixed-header">
 
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', '<?= $settings_app["google_analytics_id"]; ?>', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
 <nav class="page-sidebar" data-pages="sidebar">
 
     <div class="sidebar-header">
@@ -236,7 +247,6 @@
 <?= Html::js("jquery.menuclipper"); ?>
 <?= Html::js("scripts"); ?>
 <?= Html::js('pages.email'); ?>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.1/masonry.pkgd.min.js"></script>
 </body>
 </html>
 

@@ -27,8 +27,8 @@ class SettingsController extends AppController
                 foreach($this->Request->data as $key => $value)
                 {
                     $this->Setting->updateValue($key, $value);
-                    $this->Session->setFlash('Réglages mis à jour');
                 }
+                $this->Session->setFlash('Réglages mis à jour');
             }
             else
             {

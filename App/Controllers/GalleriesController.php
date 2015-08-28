@@ -50,6 +50,7 @@ class GalleriesController extends AppController {
 
                         Uploader::upload($_FILES['zip'], $name, $tmpdest); //On upload le zip
                         mkdir($galdest); //Crée le dossier de la galerie
+                        mkdir($galdest.'thumbnails/');
 
                         if($this->extractZip($tmpdest . $name . '.zip', $galdest)) //Extrait le zip
                         {
@@ -104,6 +105,7 @@ class GalleriesController extends AppController {
                 $zipfile = BASE . DS . 'Import' . DS . $d['new']->zip;
 
                 mkdir($galdest); //Crée le dossier de la galerie
+                mkdir($galdest.'thumbnails/');
 
                 if($this->extractZip($zipfile, $galdest)) //Extrait le zip
                 {
@@ -149,6 +151,8 @@ class GalleriesController extends AppController {
     }
     private function importPhotos($folder)
     {
+        set_time_limit(240);
+
         $this->loadModel("Photo");
 
         $lastrecord = $this->Gallery->getLast();
@@ -165,7 +169,11 @@ class GalleriesController extends AppController {
             {
                 $counter++;
                 $name = $counter.Uploader::getExtension($file);
-                rename($file, $folder.$counter.Uploader::getExtension($file));
+
+                Uploader::crop($file, $folder.'thumbnails/',$name, true);
+                Uploader::crop($file, $folder,$name);
+                unlink($file);
+
                 $pic->file = $name;
                 $pic->gallery_id = $lastrecord->id;
                 $this->Photo->create($pic);

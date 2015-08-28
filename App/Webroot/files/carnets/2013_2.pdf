@@ -1,0 +1,2 @@
+<br />
+<b>Warning</b>:  readfile(2015_1.pdf): failed to open stream: No such file or directory in <b>/Applications/MAMP/htdocs/Trientale/App/Controllers/CarnetsController.php</b> on line <b>35</b><br />

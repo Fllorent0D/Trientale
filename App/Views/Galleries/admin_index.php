@@ -37,31 +37,30 @@ use Core\Helpers\Html;
 </div>
 
 <div class="container container-fixed-lg">
-    <div class="col-md-3">
-        <div class="panel text-center">
-            <div class="panel-heading">
-                <h4>Ajouter une galerie</h4>
-            </div>
-            <div class="panel-body">
-                <a href="#" class="text-primary" data-toggle="modal" data-target="#modalSlideUp"><?= Html::fa('plus-circle fa-5x'); ?></a>
-
+    <div class="col-sm-3">
+        <div class="thumbnail">
+            <a href="#" class="text-primary" data-toggle="modal" data-target="#modalSlideUp"><?= Html::fa('plus-circle fa-5x'); ?></a>
+            <div class="caption">
+                <h3>Ajouter une galerie</h3>
+                <p>
+                </p>
             </div>
         </div>
     </div>
     <?php foreach($galleries as $gall) : ?>
-    <div class="col-md-3">
-        <div class="panel">
-            <div class="panel-heading">
-                <h4><?= $gall->title; ?></h4>
-            </div>
-            <div class="panel-body">
-                <?= Html::link(['photos', 'viewer', 'admin'], '<img src="'.Html::getFile('galleries'. DS .$gall->slug . DS . $gall->thumbnail).'" alt="thumbnail" class="img-responsive" />', [$gall->id]);  ?>
+        <div class="col-sm-3">
+            <div class="thumbnail">
+                <?= Html::link(['photos', 'viewer', 'admin'], '<img src="'.Html::getFile('galleries'. DS .$gall->slug . DS .'thumbnails' .DS. $gall->thumbnail).'" alt="thumbnail" class="img-responsive" />', [$gall->id]);  ?>
+                <div class="caption">
+                    <h3><?= $gall->title; ?></h3>
+                    <p><?= $gall->category ?></p>
+                    <p>
+                        <?= Html::link(['photos', 'viewer', 'admin'], 'Afficher', [$gall->id], ["class" => "btn btn-info btn-xs"]);  ?>
+                        <?= Html::link(['photos', 'viewer', 'admin'], 'Modifier', [$gall->id], ["class" => "btn btn-primary btn-xs"]);  ?>
 
-            </div>
-            <div class="panel-footer">
-                <?= Html::link(['photos', 'viewer', 'admin'], "Afficher", [$gall->id], ["class" => "label label-info"]) ?>
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
     <?php endforeach; ?>
 </div>

@@ -15,7 +15,6 @@
     <?= Html::css('bootstrap.min'); ?>
     <?= Html::css('theme'); ?>
     <?= Html::css('animate'); ?>
-    <?= Html::css('isotope'); ?>
     <?= Html::css('lightbox'); ?>
     <?= Html::css('flexslider'); ?>
 
@@ -24,6 +23,16 @@
     <![endif]-->
 </head>
     <body class="">
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', '<?= $settings_app["google_analytics_id"]; ?>', 'auto');
+        ga('send', 'pageview');
+
+    </script>
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
@@ -79,10 +88,10 @@
                 <div class="row info">
                     <div class="col-sm-6 testimonials">
                         <h4>
-                            <?= $settings["footer_title"]; ?>
+                            <?= $settings_app["footer_title"]; ?>
                         </h4>
                         <div class="quote">
-                            <?= $settings["footer_text"]; ?>
+                            <?= $settings_app["footer_text"]; ?>
                         </div>
                     </div>
                     <div class="col-sm-6 contact">
@@ -117,7 +126,6 @@
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <?= Html::js('bootstrap.min'); ?>
         <?= Html::js('theme'); ?>
-        <?= Html::js('jquery.isotope.min'); ?>
         <?= Html::js('lightbox.min'); ?>
         <?= Html::js('index-slider'); ?>
 

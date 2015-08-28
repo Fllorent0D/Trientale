@@ -10,7 +10,6 @@ class AppController extends Controller
     public $components = ['Auth'];
 
     public function beforeRender(){
-
         if(isset($this->Request->prefixe) && $this->Request->prefixe == "admin")
         {
             if(!$this->Auth->isLogged()) {
@@ -39,7 +38,6 @@ class AppController extends Controller
         else
         {
             $this->loadModel("Message");
-            $this->loadModel("Setting");
             if($this->Request->isPost AND $this->Request->controller != "users")
             {
                 if($this->Message->Validate($this->Request->data))
@@ -56,9 +54,10 @@ class AppController extends Controller
                     $d['contactErrors'] = $this->Message->getErrors();
                 }
             }
-            $d["settings"] = $this->Setting->getSettings();
 
         }
+        $this->loadModel("Setting");
+        $d["settings_app"] = $this->Setting->getSettings();
 
         $this->set($d);
 
