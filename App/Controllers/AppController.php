@@ -17,6 +17,7 @@ class AppController extends Controller
                 $this->redirect('users/connect');
             }
             $pages = [
+                "links" => "Liens",
                 "home" => "Accueil Administration",
                 "backups" => "Backup",
                 "calendars" => "Calendrier",

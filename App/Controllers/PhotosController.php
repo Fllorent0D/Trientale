@@ -60,8 +60,8 @@ class PhotosController extends AppController{
                         $data = new \stdClass();
                         $data->thumbnail = $photo->file;
                         $this->Gallery->update($album->id, $data);
-                        $this->redirect('admin/photos/viewer/'.$album->id);
                         $this->Session->setFlash("La miniature à bien été mise à jour");
+                        $this->redirect('admin/photos/viewer/'.$album->id);
                     }
                     else
                     {

@@ -10,7 +10,7 @@ use Core\Helpers\Form;
 use Core\Helpers\Date;
 use Core\Helpers\Calendar;
 ?>
-<div class="modal fade slide-top disable-scroll" id="modalSlideUp" tabindex="-1" role="dialog" aria-labelledby="modalSlideUpLabel" aria-hidden="false">
+<div class="modal fade slide-left disable-scroll" id="modalSlideUp" tabindex="-1" role="dialog" aria-labelledby="modalSlideUpLabel" aria-hidden="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header clearfix text-left">

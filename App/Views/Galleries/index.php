@@ -25,6 +25,7 @@
                         </div>
                         <div class="text">
                             <h5><?= Html::link(['photos', 'index'], $gallery->title, [$gallery->id]);  ?></h5>
+                            <p><?= $gallery->category ?></p>
                             <span class="date"><?=count($gallery->photos);  ?> photos</span>
                         </div>
 

@@ -58,7 +58,7 @@
                         <li class="dropdown">
                             <a href="index.html#" class="dropdown-toggle" data-toggle="dropdown">DOSSIERS<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Programme des activités</a></li>
+                                <li><?= Html::link(['calendars', 'index'], "Calendrier"); ?></li>
                                 <li><?= Html::link(['carnets', 'index'], "Carnets"); ?></li>
                                 <li><?= Html::link(['visites', 'index'], "Comptes rendus"); ?></li>
                                 <li><a href="#">Articles</a></li>
@@ -71,7 +71,7 @@
                                 <li><?= Html::link(['members', 'index'], "Galeries des membres"); ?></li>
                             </ul>
                         </li>
-                        <li><a href="#">LIENS</a></li>
+                        <li><?= Html::link(['links', 'index'], "LIENS"); ?></li>
                         <li><?= Html::link(['glossaires', 'index'], "GLOSSAIRE"); ?></li>
                     </ul>
                 </div>
