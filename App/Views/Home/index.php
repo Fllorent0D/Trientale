@@ -17,7 +17,8 @@
         <article class="slide" id="showcasing" style="background: url('<?= Slider::getUrl('trientalis.jpg'); ?>') repeat-x top center;">
             <div class="info">
                 <h2>Bienvenue sur latrientale-cnb.be</h2>
-                <img class="asset left-30 sp900 t-50 z1" src="<?= Slider::getUrl('logo.png'); ?>" />
+                <img class="asset left-100 sp900 t-50 z3" src="<?= Slider::getUrl('logo.png'); ?>" />
+                <a href="">Visite</a>
             </div>
         </article>
         <article class="slide" id="ideas" style="background: url('<?= Slider::getUrl('slider4.jpg'); ?>') repeat-x top center;">
@@ -27,12 +28,6 @@
             </div>
         </article>
 
-        <article class="slide" id="tour" style="background: url('<?= Slider::getUrl('slider2.JPG'); ?>') repeat-x top center;">
-            <div class="info">
-                <h2>Test texte sur la droite</h2>
-
-            </div>
-        </article>
     </section>
 
 <div class="container">
