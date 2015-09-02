@@ -43,8 +43,10 @@ class MessagesController extends AppController {
                         $mail->Port = 587;
                         $mail->setFrom($settings["smtp_user"], $settings["mail_name"]);
                         $mail->addAddress($content->email, $content->name);
+                        $mail->isHTML();
                         $mail->Subject = $this->Request->data->subject ;
                         $mail->Body = $this->Request->data->message;
+                        $mail->Body .= "<br /><br />".$settings["mail_signature"];
                         if(!$mail->send())
                         {
                             $this->Session->setFlash("Le mail n'a pas été envoyé. Erreur : " . $mail->ErrorInfo, "danger");
