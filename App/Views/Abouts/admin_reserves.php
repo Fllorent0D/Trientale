@@ -23,7 +23,7 @@ use Core\Helpers\Form;
                     <div class="form-group">
                     </div>
 
-                    <?= Form::start('admin/abouts/index', "POST", ['class' => 'form-default']); ?>
+                    <?= Form::start('admin/abouts/reserves', "POST", ['class' => 'form-default']); ?>
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group <?= (isset($error['title']))? "has-error" : ""; ?>">

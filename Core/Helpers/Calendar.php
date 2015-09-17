@@ -8,8 +8,6 @@
 
 namespace Core\Helpers;
 
-
-use Core\Lib\Debug;
 use Core\Helpers\Html;
 
 class Calendar {
@@ -72,7 +70,10 @@ class Calendar {
                 {
                     $date = $counter - $start + 1;
                     if($curday == $date && $curmonth == $month && $curyear == $year)
+                    {
                         $tclass = 'class="badge badge-default"';
+
+                    }
                     $ldate = $year . '-'.str_pad($month, 2, 0, STR_PAD_LEFT) .'-'.str_pad($date, 2, 0, STR_PAD_LEFT);
                     foreach ($event as $key => $val)
                     {

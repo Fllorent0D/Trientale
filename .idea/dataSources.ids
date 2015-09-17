@@ -12,6 +12,7 @@
       <column name="title" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="text" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
       <column name="place" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="category" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
     </table>
     <table name="backups" schema="" catalog="trientalis" type="TABLE">

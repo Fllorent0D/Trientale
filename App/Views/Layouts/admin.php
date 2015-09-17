@@ -60,7 +60,7 @@
                         <span class="icon-thumbnail"><?= Html::fa("edit"); ?></span>
                     </li>
                     <li>
-                        <?= Html::link(["carnets", "index", "admin"],'<span class="title">Des réserves naturels</span>')?>
+                        <?= Html::link(["abouts", "reserves", "admin"],'<span class="title">Des réserves naturels</span>')?>
                         <span class="icon-thumbnail"><?= Html::fa("leaf"); ?></span>
                     </li>
                 </ul>

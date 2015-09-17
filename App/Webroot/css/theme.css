@@ -599,8 +599,8 @@ table
     color: #fff;
     font-size: 50px;
     font-weight: normal;
-    margin-left: 100px;
-    margin-top: 80px;
+    margin-left: 130px;
+    margin-top: 30px;
     line-height: 56px;
     text-shadow: 1px 1px 1px #31393d;
 }
@@ -634,10 +634,11 @@ table
     font-size: 19px;
     border-radius: 5px;
     margin-top: 40px;
-    margin-left: 100px;
+    margin-left: 130px;
     display: inline-block;
     -webkit-transition: opacity .2s linear;
     -moz-transition: opacity .2s linear;
+    transition: opacity .2s linear;
     transition: opacity .2s linear;
 }
 #feature_slider .slide#responsive .info {
@@ -652,9 +653,14 @@ table
     font-weight: normal;
     text-shadow: 1px 1px 1px #3b3262;
     line-height: 56px;
+    margin-left: 200px;
+
 }
 #feature_slider .slide#responsive .info h2 strong {
     font-size: 42px;
+}
+#feature_slider .slide#responsive .info a{
+    padding-top: 5px;
 }
 #feature_slider .slide .info {
     display: none;

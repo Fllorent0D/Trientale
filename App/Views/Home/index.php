@@ -1,4 +1,7 @@
-<?php Use App\Helpers\Slider; ?>
+<?php
+    Use App\Helpers\Slider;
+
+?>
     <section id="feature_slider" class="lol">
         <!--
             Each slide is composed by <img> and .info
@@ -14,19 +17,15 @@
 
             For the backgrounds, you can combine from the bgs folder :D
         -->
-        <article class="slide" id="showcasing" style="background: url('<?= Slider::getUrl('trientalis.jpg'); ?>') repeat-x top center;">
-            <div class="info">
-                <h2>Bienvenue sur latrientale-cnb.be</h2>
-                <img class="asset left-100 sp900 t-50 z3" src="<?= Slider::getUrl('logo.png'); ?>" />
-                <a href="">Visite</a>
-            </div>
-        </article>
-        <article class="slide" id="ideas" style="background: url('<?= Slider::getUrl('slider4.jpg'); ?>') repeat-x top center;">
-            <div class="info">
-                <h2>Formation de Guides-Nature® des Cercles des Naturalistes de Belgique</h2>
-                <img class="asset left-75 sp600 t100 z2" src="<?= Slider::getUrl('CNB.png'); ?>" />
-            </div>
-        </article>
+
+
+        <?php
+            foreach($slides as $slide)
+            {
+                echo Slider::createSlide($slide);
+            }
+
+        ?>
 
     </section>
 

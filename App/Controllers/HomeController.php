@@ -12,9 +12,11 @@ class HomeController extends AppController
     public function index()
     {
         $this->loadModel("Calendar");
+        $this->loadModel("Slider");
         $d["calendrier"] = $this->Calendar->getEvent(date("m"), date("Y"));
+        $d["slides"] = $this->Slider->get(["order" => "place"]);
+
         $this->set($d);
-        // Votre code ici.
     }
 
     public function admin_index()
@@ -53,7 +55,7 @@ class HomeController extends AppController
                     {
                         $d["post"]->l = -75;
                         $d["post"]->sp = 600;
-                        $d["post"]->t = -100;
+                        $d["post"]->t = 100;
                     }
                     else
                     {
