@@ -31,7 +31,8 @@ class AppController extends Controller
                 "settings" => "Réglages",
                 "users" => "Utilisateurs",
                 "visites" => "Comptes Rendus",
-                "abouts" => "A propos"
+                "abouts" => "A propos",
+                "picasas" => "Picasa",
                 ];
             $d["pageTitle"] = $pages[$this->Request->controller];
             $this->layout = 'admin';

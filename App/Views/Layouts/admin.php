@@ -97,7 +97,7 @@
                         <span class="icon-thumbnail"><?= Html::fa("leaf"); ?></span>
                     </li>
                     <li>
-                        <?= Html::link(["galleries", "index", "admin"],'<span class="title">Galeries des membres</span>')?>
+                        <?= Html::link(["members", "index", "admin"],'<span class="title">Galeries des membres</span>')?>
                         <span class="icon-thumbnail"><?= Html::fa("users"); ?></span>
                     </li>
                 </ul>
@@ -217,7 +217,7 @@
         <div class="container-fluid container-fixed-lg footer">
             <div class="copyright sm-text-center">
                 <span class="small no-margin">
-                    <?= Html::fa('code') ?> Version 0.1
+                    <?= Html::fa('code') ?> Version 0.2
                 </span>
                 <span class="small no-margin pull-right sm-pull-reset">
                     Powered by <a href="//mvc.swith.fr/">Swith Framework</a> <span class="hint-text">&amp; Made with Love <?= Html::fa("heart"); ?></span>

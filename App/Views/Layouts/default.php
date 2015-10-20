@@ -117,12 +117,20 @@
                                 © 2015 <a href="//floca.be">Cardoen Florent</a>
                             </div>
                         </div>
+                        <div class="row text-center">
+                            <script id="_wauueg">var _wau = _wau || []; _wau.push(["classic", "lknll1421etv", "ueg"]);
+                                (function() {var s=document.createElement("script"); s.async=true;
+                                    s.src="http://widgets.amung.us/classic.js";
+                                    document.getElementsByTagName("head")[0].appendChild(s);
+                                })();</script>
+                        </div>
                     </div>
                 </div>
             </div>
         </footer>
 
         <!-- Scripts -->
+
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <?= Html::js('bootstrap.min'); ?>
         <?= Html::js('theme'); ?>

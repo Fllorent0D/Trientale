@@ -19,6 +19,18 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3>Version 0.2</h3>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                        <li>Galeries Membres</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="col-md-6">
         <div class="row">
